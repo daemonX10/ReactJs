@@ -1,34 +1,84 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  // let counter = 0;
+
+  const [state_counter, setState_counter] = useState(0);
+  useEffect(() => {
+    console.log(`State Counter Value Using hook ${state_counter}`)
+  }, [state_counter]);
+
+  // const addvalue = () =>{
+  //   counter++;
+  //   console.log(`counter value is ${counter}`);
+  // }
+
+/* The commented code block is defining a function called `removeValue` that decrements the value of
+the `counter` variable by 1 and logs the updated value to the console. However, this code is not
+being used in the component and is commented out, so it does not have any effect on the
+functionality of the application. */
+  // const removeValue = ()=>{
+  //   counter--;
+  //   console.log(`counter value is ${counter}`);
+  // }
+
+  const AddValueState = () =>{
+    if(state_counter<20){
+      setState_counter(state_counter + 1);
+    }else{
+      console.log(`Cannot exceed Value of state_counter than 20`);
+    }
+  }
+  
+
+  const removeValueState =()=>{
+    if(state_counter>0){
+      setState_counter(state_counter - 1);
+    }else{
+      console.log(`value cannot be less than 0`);
+    }
+  }
+
+  const resetValue = ()=>{
+    setState_counter(0);
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      {/* <h1>counter Value:{counter} </h1>
+
+      <button onClick={addvalue}>
+        Add Value {counter}
+      </button>
+      <br />
+      <button onClick={removeValue}>
+        Remove Value {counter}
+      </button>
+
+      <br />
+      <br /> */}
+
+      <h1>state_counter</h1>
+
+      <h1>counter Value:{state_counter} </h1>
+
+      <button onClick={AddValueState}>
+        Add Value
+      </button>
+
+      <br />
+
+      <button onClick={removeValueState}>
+        Remove Value
+      </button>
+
+      <br />
+
+      <button onClick={resetValue}>
+        Reset
+      </button>
+    </div>
   )
 }
 

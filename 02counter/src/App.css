@@ -5,6 +5,18 @@
   text-align: center;
 }
 
+body{
+  background: #282c34;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-size: calc(10px + 2vmin);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -16,6 +28,28 @@
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+div {
+  margin: 1em 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+button{
+  padding: 0.5em 1em;
+  font-size: 1.5em;
+  border-radius: 0.5em;
+  border: 0;
+  background: #646cff;
+  color: white;
+  cursor: pointer;
+  transition: background 300ms;
+  justify-content: space-evenly;
 }
 
 @keyframes logo-spin {
