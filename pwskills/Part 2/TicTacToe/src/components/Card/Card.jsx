@@ -1,10 +1,9 @@
-
-
+import Icon from "../Icon/Icon"
 
 const Card = () => {
   return (
-    <div>
-        <span>CARD</span>
+    <div className="card">
+        <Icon />
     </div>
   )
 }
