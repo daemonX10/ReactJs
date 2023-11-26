@@ -1,7 +1,10 @@
 import { FaPencil, FaRegCircle } from "react-icons/fa6";
 import { FaTimes } from "react-icons/fa";
+import PropTypes from "prop-types";
+import "./Icon.css";
 
-const Icon = (name) => {
+const Icon =({name}) => {
+    console.log(name)
     if(name=="circle"){
         return <FaRegCircle
         className="icon"/>
@@ -14,6 +17,10 @@ const Icon = (name) => {
         return <FaPencil 
         className="icon"/>
     }
+}
+
+Icon.propTypes ={
+    name: PropTypes.string.isRequired
 }
 
 export default Icon
