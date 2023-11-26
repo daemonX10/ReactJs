@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import "./Icon.css";
 
 const Icon =({name}) => {
-    console.log(name)
     if(name=="circle"){
         return <FaRegCircle
         className="icon"/>
@@ -20,7 +19,7 @@ const Icon =({name}) => {
 }
 
 Icon.propTypes ={
-    name: PropTypes.string.isRequired
+    name: PropTypes.string
 }
 
 export default Icon
