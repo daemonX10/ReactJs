@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import './Card.css'
 const Card = ({iconName}) => {
   return (
-    <div className="card">
+    <div className="card" onClick={(e)=>{
+      console.log(e)
+    }}>
         <Icon name={iconName} />
     </div>
   )

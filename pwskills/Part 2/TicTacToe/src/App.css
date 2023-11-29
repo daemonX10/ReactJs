@@ -8,3 +8,15 @@ body{
   padding: 0;
   font-family: 'Roboto', sans-serif;
 }
+
+.title{
+  width: 40vw;
+  color: var(--blue);
+  text-align: center;
+  font-size: 3rem;
+  background-color: #f5f5f5;
+  border: 2px solid #f5f5f5;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 5px #f5f5f5;
+  margin-left: 30vw;
+}

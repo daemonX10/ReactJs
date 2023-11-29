@@ -12,3 +12,7 @@
     border: 2px solid whitesmoke;
     background-color: #f5f5f5;
 }
+
+.turn-highlight{
+    color: rgb(255, 255, 255);
+}
