@@ -24,34 +24,47 @@ const Grid = ({numberOfCards=9}) => {
   const [board, setBoard] = useState(Array(numberOfCards).fill(""));
   const [winner, setWinner] = useState(null);
 
+  const playerTurn = () => {
+    return winner == null ? (turn ? 'X' : 'O') : winner;
+  }
+
   function play (index){
     console.log('Move Played' , index);
+    const newBoard = [...board];
     if(turn == true){
-      board[index] = 'X';
+      newBoard[index] = 'X';
     }
     else{
-      board[index] = 'O';
+      newBoard[index] = 'O';
     }
     
-    const win = isWinner(board, turn ? 'X' : 'O');
+    const win = isWinner(newBoard, turn ? 'X' : 'O');
     if (win){
       setWinner(win);
     }
 
-    setBoard([...board]);
+    setBoard([...newBoard]);
     setTurn(!turn);
+  }
+
+  function reset(){
+    setBoard(Array(numberOfCards).fill(""));
+    setWinner(null);
   }
 
   return (
   <>
     <h1 className="turn-highlight">
-      Current Turn  : {turn ? 'X' : 'O'}
+        Current Turn  :  {playerTurn()}
     </h1>
     
-    {winner && (
+    { winner &&  (
+     <>
       <h1 className="winner-highlight">
         Winner is {winner}
       </h1>
+      <button onClick={reset} > Next Game </button>
+     </>
     )}
 
     <div className="grid">
