@@ -1,11 +1,11 @@
-import { useState } from "react"
-import Card from "../Card/Card"
-import './Grid.css'
-import PropTypes from 'prop-types'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+  import { useState } from "react"
+  import Card from "../Card/Card"
+  import './Grid.css'
+  import PropTypes from 'prop-types'
+  import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
-function isWinner(board, symbol) {
+  function isWinner(board, symbol) {
   if (board[0] === symbol && board[1] === symbol && board[2] === symbol) return symbol;
   if (board[3] === symbol && board[4] === symbol && board[5] === symbol) return symbol;
   if (board[6] === symbol && board[7] === symbol && board[8] === symbol) return symbol;
@@ -18,9 +18,9 @@ function isWinner(board, symbol) {
   if (board[2] === symbol && board[4] === symbol && board[6] === symbol) return symbol;
 
   return null;
-}
+  }
 
-const Grid = ({numberOfCards=9}) => {
+  const Grid = ({numberOfCards=9}) => {
 
   const [turn, setTurn] = useState(true);
   const [board, setBoard] = useState(Array(numberOfCards).fill(""));
@@ -31,17 +31,18 @@ const Grid = ({numberOfCards=9}) => {
   }
 
   function play (index){
-    console.log('Move Played' , index);
+  if(board[index] === "" && winner == null){
+    console.log('Move Played', index);
     const newBoard = [...board];
-    if(turn){
+    if (turn == true) {
       newBoard[index] = 'X';
     }
-    else{
+    else {
       newBoard[index] = 'O';
     }
-    
+
     const win = isWinner(newBoard, turn ? 'X' : 'O');
-    if (win){
+    if (win) {
       setWinner(win);
       toast.success(`Winner is ${win}`, {
         position: "top-right",
@@ -52,11 +53,24 @@ const Grid = ({numberOfCards=9}) => {
         draggable: true,
         progress: undefined,
         theme: "light",
-});
+      });
     }
 
-    setBoard(newBoard);
+    setBoard([...newBoard]);
     setTurn(!turn);
+  }else{
+    console.log('Invalid Move', index);
+    toast.error("Invalid Move", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "light",
+      progress: undefined,
+    });
+  }
   }
 
   function reset(){
@@ -69,26 +83,13 @@ const Grid = ({numberOfCards=9}) => {
     <h1 className="turn-highlight">
         Current Turn  :  {playerTurn()}
     </h1>
+    <ToastContainer/>
+    <button onClick={reset} className="reset"> Next Game </button>
     
     { winner &&  (
-     <>
       <h1 className="winner-highlight">
         Winner is {winner}
       </h1>
-      <button onClick={reset} className="reset"> Next Game </button>
-          <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          />
-     </>
     )}
 
     <div className="grid">
@@ -98,10 +99,10 @@ const Grid = ({numberOfCards=9}) => {
     </div>
   </>
   )
-}
+  }
 
-Grid.propTypes = {
+  Grid.propTypes = {
   numberOfCards: PropTypes.number
-}
+  }
 
-export default Grid
+  export default Grid
