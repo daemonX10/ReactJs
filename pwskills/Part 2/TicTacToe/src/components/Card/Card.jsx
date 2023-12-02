@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import './Card.css'
 
 
-const Card = ({onPlay, player, index }) => {
+const Card = ({onPlay, player, index , gameEnd }) => {
     
     let icon = <Icon /> 
     if(player === 'X'){
@@ -13,7 +13,7 @@ const Card = ({onPlay, player, index }) => {
     }
 
   return (
-    <div className="card" onClick={()=>{onPlay(index)}}>
+    <div className="card" onClick={ ()=>{ !gameEnd && player =="" && onPlay(index) } }>
       {icon}
     </div>
   )
@@ -24,7 +24,8 @@ Card.propTypes = {
   iconName: PropTypes.string,
   onPlay: PropTypes.func,
   player: PropTypes.string,
-  index: PropTypes.number
+  index: PropTypes.number,
+  gameEnd: PropTypes.bool
 }
 
 export default Card
