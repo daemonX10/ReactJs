@@ -1,18 +1,22 @@
 import Icon from "../Icon/Icon"
 import PropTypes from 'prop-types'
 import './Card.css'
-const Card = ({iconName , onPlay }) => {
-    console.log("Move Played");
+
+
+const Card = ({iconName , onPlay, player }) => {
+
+  function playMove(){
+    onPlay();
+    console.log(player);
+  }
+  
   return (
-    <div className="card" onClick={onPlay}>
+    <div className="card" onClick={playMove}>
         <Icon name={iconName} />
     </div>
   )
 }
 
-Card.propTypes = {
-  iconName: PropTypes.string
-}
 
 Card.propTypes = {
   iconName: PropTypes.string,

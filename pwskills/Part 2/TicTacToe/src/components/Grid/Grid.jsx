@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 const Grid = ({numberOfCards=9}) => {
 
   const [turn, setTurn] = useState(true);
+  const [board, setBoard] = useState(Array(numberOfCards).fill("*"));
 
   function play (){
     console.log('Move Played');
@@ -18,8 +19,8 @@ const Grid = ({numberOfCards=9}) => {
     </h1>
     
     <div className="grid">
-      {Array(numberOfCards).fill().map((el, idx) => {
-        return <Card onPlay={play} key={idx} />
+      {board.map((value, idx) => {
+        return <Card onPlay={play} player={value} key={idx} />
       })}
     </div>
   </>
