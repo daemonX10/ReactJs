@@ -2,6 +2,8 @@ import { useState } from "react"
 import Card from "../Card/Card"
 import './Grid.css'
 import PropTypes from 'prop-types'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function isWinner(board, symbol) {
   if (board[0] === symbol && board[1] === symbol && board[2] === symbol) return symbol;
@@ -31,7 +33,7 @@ const Grid = ({numberOfCards=9}) => {
   function play (index){
     console.log('Move Played' , index);
     const newBoard = [...board];
-    if(turn == true){
+    if(turn){
       newBoard[index] = 'X';
     }
     else{
@@ -41,9 +43,19 @@ const Grid = ({numberOfCards=9}) => {
     const win = isWinner(newBoard, turn ? 'X' : 'O');
     if (win){
       setWinner(win);
+      toast.success(`Winner is ${win}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+});
     }
 
-    setBoard([...newBoard]);
+    setBoard(newBoard);
     setTurn(!turn);
   }
 
@@ -63,7 +75,19 @@ const Grid = ({numberOfCards=9}) => {
       <h1 className="winner-highlight">
         Winner is {winner}
       </h1>
-      <button onClick={reset} > Next Game </button>
+      <button onClick={reset} className="reset"> Next Game </button>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
      </>
     )}
 
