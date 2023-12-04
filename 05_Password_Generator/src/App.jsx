@@ -1,7 +1,12 @@
-import { useCallback, useState , useRef, useEffect } from 'react'
+import { useCallback, useState , useRef, useEffect, useMemo } from 'react'
 import './App.css'
 
+const ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+const NUMBER = "0123456789";
+const SPECIAL_CHARS = "!@#$%^&*-_+=[]{}~`";
+
 function App() {
+
   // state for length of password 
   const [length, setLength] = useState(8);
 
@@ -17,20 +22,24 @@ function App() {
   // ref hook for password input field
   const passwordRef = useRef(null);
 
+  const str = useMemo(() => {
+    let s = ALPHA;
+    if (numberAllowed) s += NUMBER;
+    if (charAllowed) s += SPECIAL_CHARS;
+    return s;
+  }, [numberAllowed, charAllowed]);
+
+
   // useCallback hook to create password
   const passwordGenerator = useCallback(()=>{
     let pass = "";
-    let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-    if(numberAllowed) str += "0123456789";
-    if (charAllowed) str += "!@#$%^&*-_+=[]{}~`"
-
     for(let i=1;i<= length; i++){
       let char = Math.floor(Math.random() * str.length + 1);
       pass += str.charAt(char);
     }
 
     setPassword(pass);
-  },[length,numberAllowed,charAllowed,setPassword])
+  },[length,str])
 
   // usecall back hook to copy password to clipboard
   const copyPasswordToClipboard  = useCallback(()=>{
