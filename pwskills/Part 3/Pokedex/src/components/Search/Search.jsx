@@ -1,6 +1,13 @@
+import './Search.css'
+
 const Search = () => {
   return (
-    <div>Search</div>
+    <>
+    <input 
+    id='search-pokemon'
+    type="text" 
+    placeholder='Pokemon Name ' /> 
+    </>
   )
 }
 
