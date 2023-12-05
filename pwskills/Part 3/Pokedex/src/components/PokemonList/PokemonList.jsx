@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './PokemonList.css'
 import axios from 'axios';
+import Pokemon from '../Pokemon/Pokemon';
 
 const PokemonList = () => {
 
@@ -9,8 +10,21 @@ const PokemonList = () => {
     
     const  downloadPokemon = async ()=>{
         const respose = await axios.get(POKEDEX_API);
-        console.log(respose.data.results);
-        setPokemonList(respose.data.results);
+        const pokemonResults = respose.data.results;
+        const pokemonPromise = pokemonResults.map((pokemon)=>axios.get(pokemon.url));
+        const pokemonListData = await axios.all(pokemonPromise);
+
+        const pokemonFinalList = pokemonListData.map(pokemonData =>{
+            const pokemon = pokemonData.data;
+            return {
+                id:pokemon.id,
+                name:pokemon.name,
+                image: pokemon.sprites.front_default,
+                types : pokemon.types.map((type)=>type.type.name)
+            }
+        });
+        setPokemonList(pokemonFinalList);
+        console.log(pokemonFinalList);
     }
 
     useEffect(()=>{
@@ -19,11 +33,10 @@ const PokemonList = () => {
 
   return (
     <>
-        {pokemonList.map((pokemon,index)=>{
-            return(
-            <h2 key={index}>{pokemon.name}</h2>
-            )
-        })}
+    <div className="pokemon-list-wrapper">
+        <div>Pokemon List</div>
+        {pokemonList.map((pokemon,index) => <Pokemon key={index} /> )}
+    </div>
     </>
   )
 }
