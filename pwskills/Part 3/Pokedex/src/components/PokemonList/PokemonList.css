@@ -1,3 +1,15 @@
+body{
+  width: 100%;
+}
+
+.pokemon-list-wrapper{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  justify-content: space-evenly;
+  align-items: center;
+}
 
 h2{
     position: relative;
@@ -9,12 +21,3 @@ h2{
     margin: 1rem;
 }
 
-.pokemon-list-wrapper{
-  width: 100vw;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  justify-content: space-evenly;
-  align-items: center;
-  margin-left: 60px;
-}
