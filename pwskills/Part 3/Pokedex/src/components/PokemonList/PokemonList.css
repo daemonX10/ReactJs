@@ -1,0 +1,17 @@
+
+.pokemon-list-wrapper h2{
+  position: relative;
+    border: 2px solid rgb(0, 0, 0);
+    color: black;
+    background-color: #B4EBFF;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: 1rem;
+}
+.pokemon-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+} 

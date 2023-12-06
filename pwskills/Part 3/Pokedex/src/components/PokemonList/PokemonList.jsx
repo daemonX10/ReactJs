@@ -19,7 +19,7 @@ const PokemonList = () => {
             return {
                 id:pokemon.id,
                 name:pokemon.name,
-                image: pokemon.sprites.front_default,
+                image: pokemon.sprites.other.dream_world.front_default,
                 types : pokemon.types.map((type)=>type.type.name)
             }
         });
@@ -34,8 +34,8 @@ const PokemonList = () => {
   return (
     <>
     <div className="pokemon-list-wrapper">
-        <div>Pokemon List</div>
-        {pokemonList.map((pokemon,index) => <Pokemon key={index} /> )}
+        <h2> Pokemon List </h2>
+        {pokemonList.map((pokemon,index) => <Pokemon name={pokemon.name} url={pokemon.image} key={index} /> )}
     </div>
     </>
   )
