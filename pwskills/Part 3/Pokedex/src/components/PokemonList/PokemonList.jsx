@@ -33,8 +33,8 @@ const PokemonList = () => {
 
   return (
     <>
-    <div className="pokemon-list-wrapper">
         <h2> Pokemon List </h2>
+    <div className="pokemon-list-wrapper">
         {pokemonList.map((pokemon,index) => <Pokemon name={pokemon.name} url={pokemon.image} key={index} /> )}
     </div>
     </>

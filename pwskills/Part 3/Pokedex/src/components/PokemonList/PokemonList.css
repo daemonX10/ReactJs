@@ -1,6 +1,6 @@
 
-.pokemon-list-wrapper h2{
-  position: relative;
+h2{
+    position: relative;
     border: 2px solid rgb(0, 0, 0);
     color: black;
     background-color: #B4EBFF;
@@ -8,10 +8,13 @@
     border-radius: 1rem;
     margin: 1rem;
 }
-.pokemon-list-wrapper {
+
+.pokemon-list-wrapper{
+  width: 100vw;
   display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-} 
+  margin-left: 60px;
+}
