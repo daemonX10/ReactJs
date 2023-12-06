@@ -5,16 +5,16 @@
 }
 
 
-
 .pokemon-frame{
-    width: 30vw;
-    height: 20%;
+    width: 30%;
+    height: 30vw;
     border: 2px solid black;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background:linear-gradient(0deg, rgb(82, 192, 132) 0%, #D4DFED 100%);
+    border-radius: 1rem;
 }
 
 .pokemon-frame h3{
@@ -23,12 +23,17 @@
     margin: 1rem;
     text-transform: capitalize;
     color: blanchedalmond;
+    padding: 0.5rem 1rem;
+    background-color: #CDDDE8;
+    border-radius: 1rem;
+    text-align: center;
     text-shadow: #101113 1px 1px 1px;
 }
 
 .pokemon-frame img{
     width: 100%;
+    height: 70%;
+    object-fit: contain;
 
-    object-fit:scale-down;
 }
 
