@@ -21,3 +21,24 @@ h2{
     margin: 1rem;
 }
 
+.page-controller{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-controller button{
+  margin: 1rem;
+  padding: 10px;
+  border-radius: 5px;
+  border:none;
+  background-color: #80dfff;
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.page-controller button:hover{
+  cursor: pointer;
+  background-color: #00bfff;
+}

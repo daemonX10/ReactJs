@@ -46,3 +46,17 @@
     filter: drop-shadow(10px 10px 10px rgba(18, 19, 14, 0.603));
 }
 
+.pokemon-id{
+    width: auto;
+    height: auto;
+    position: relative;
+    left : -37%;
+    bottom: -25px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #CDDDE8;
+    background-color: #ffffff;
+    border-radius: 30%;
+    padding: 3px;
+}
+
