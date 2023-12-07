@@ -1,4 +1,5 @@
 // parent component:
+import PropTypes from 'prop-types';
 
 function App(){
     return(
@@ -7,6 +8,7 @@ function App(){
         </div>
     )
 }
+
 
 // child component:
 
@@ -18,3 +20,10 @@ function UserDetails(props){
         </div>
     )
 }
+
+UserDetails.propTypes = {
+    name: PropTypes.string.isRequired,
+    bio: PropTypes.string.isRequired
+}
+
+export {App, UserDetails};
