@@ -27,7 +27,8 @@
 }
 
 .pokemon-frame h3{
-    font-size: 2rem;
+    height: 10%;
+    font-size: 2vw;
     font-weight: 800;
     margin: 1rem;
     text-transform: capitalize;
@@ -35,7 +36,9 @@
     padding: 0.5rem 1rem;
     background-color: #CDDDE8;
     border-radius: 1rem;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-shadow: #101113 1px 1px 1px;
 }
 
@@ -47,16 +50,19 @@
 }
 
 .pokemon-id{
-    width: auto;
+    width: 2vw;
     height: auto;
     position: relative;
     left : -37%;
     bottom: -25px;
-    font-size: 1.5rem;
+    font-size: 2vw;
     font-weight: 800;
     color: #CDDDE8;
     background-color: #ffffff;
     border-radius: 30%;
-    padding: 3px;
+    padding: 0.5vw 2vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
