@@ -4,13 +4,11 @@ import PropTypes from 'prop-types';
 
 const Pokemon = ({ name, url,id }) => {
   return (
-      <Link to={`/pokemon/${id}`}>
-        <div className="pokemon-frame">
+    <Link to={`/pokemon/${id}`} className="pokemon-frame" >
           <p className="pokemon-id">{id}
           </p>
           <img src={url} />
           <h3>{name}</h3>
-        </div>
       </Link>
 
   );
