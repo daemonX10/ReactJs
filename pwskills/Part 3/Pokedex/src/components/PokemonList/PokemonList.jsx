@@ -24,10 +24,10 @@ const PokemonList = () => {
         // setNextUrl(respose.data.next);
         // setPrevUrl(respose.data.previous);
 
-        setPokemonListState((state)=>({...state, 
+        setPokemonListState({...pokemonListState, 
             nextUrl : respose.data.next,
             prevUrl : respose.data.previous
-        }))
+        })
 
         const pokemonResults = respose.data.results;
         const pokemonPromise = pokemonResults.map((pokemon) => axios.get(pokemon.url));
