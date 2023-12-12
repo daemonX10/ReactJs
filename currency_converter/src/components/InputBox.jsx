@@ -1,11 +1,11 @@
-import React from 'react'
+import PropTypes from 'prop-types'
 
 const InputBox = ({
         label,
         amount,
         onAmountChange,
         onCurrencyChange,
-        currencyOption=[],
+        currencyOptions=[],
         selectCurrency = "usd",
         amountDisable = false,
         currencyDisable = false,
@@ -34,26 +34,35 @@ const InputBox = ({
         <select
           className="rounded-lg px-1 py-1 bg-gray-100 cursor-pointer outline-none"
           value={selectCurrency} 
-          onChange={(e)=> onCurrencyChange && onCurrencyChange(/* In this code, `e.target.value` is
-          used to get the value of the input
-          field or select element that
-          triggered the `onChange` event. It is
-          commonly used in React to access the
-          current value of an input field or
-          select element when handling user
-          input. */
-          e.target.value)}
+          onChange={(e)=> onCurrencyChange && onCurrencyChange(
+          e.target.value)} 
+          disabled={currencyDisable}
 
         >
 
-          <option value="usd">
-            usd
-          </option>
+          {currencyOptions.map((currency)=>(
+            <option key={currency} value={currency}>
+              {currency}
+            </option>
+          ))}
 
         </select>
       </div>
     </div>
   );
+}
+
+
+InputBox.propTypes = {
+  label: PropTypes.string,
+  amount: PropTypes.number,
+  onAmountChange: PropTypes.func,
+  onCurrencyChange: PropTypes.func,
+  currencyOptions: PropTypes.array,
+  selectCurrency: PropTypes.string,
+  amountDisable: PropTypes.bool,
+  currencyDisable: PropTypes.bool,
+  className: PropTypes.string
 }
 
 export default InputBox
