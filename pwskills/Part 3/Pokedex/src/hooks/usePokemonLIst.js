@@ -11,8 +11,8 @@ const usePokemonList = () =>{
     const [pokemonListState, setPokemonListState] = useState({
         POKEDEX_URL: Default_URL,
         pokemonList: [],
-        nextUrl: Default_URL,
-        prevUrl: Default_URL
+        nextUrl: '',
+        prevUrl: ''
     });
 
 
