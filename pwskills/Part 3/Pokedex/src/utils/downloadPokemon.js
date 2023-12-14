@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const downloadPokemon = async (pokemonListState,setPokemonListState,Default_URL,limit=20) => {
+const downloadPokemon = async (pokemonListState,setPokemonListState,Default_URL) => {
     console.log('downloadPokemon '+ (pokemonListState.POKEDEX_URL));
     const respose = await axios.get(pokemonListState.POKEDEX_URL ? pokemonListState.POKEDEX_URL : Default_URL);
 
@@ -13,7 +13,7 @@ const downloadPokemon = async (pokemonListState,setPokemonListState,Default_URL,
         prevUrl: respose.data.previous
     })
 
-    const pokemonResults = (respose.data.results? respose.data.results : respose.data.pokemon).slice(0, limit);
+    const pokemonResults = (respose.data.results? respose.data.results : respose.data.pokemon);
 
     const pokemonPromise = pokemonResults.map((p) => {
         if(p.url){
@@ -28,8 +28,6 @@ const downloadPokemon = async (pokemonListState,setPokemonListState,Default_URL,
         const pokemon = pokemonData.data;
 
         const defaultImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
-
-        console.log('pokemon ' + [pokemon.name,pokemon.id].slice(0,20));
 
         return {
             id: pokemon.id,

@@ -62,7 +62,6 @@ const PokemonDetails = () => {
                         url={pokemon.image}
                         id={pokemon.id}
                         key={pokemon.id}
-                        onClick= {()=>setPokemonId(pokemon.id)} // Remove arrow function
                     />
                 ))}
             </div>
