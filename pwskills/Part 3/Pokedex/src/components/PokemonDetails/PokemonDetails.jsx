@@ -1,25 +1,27 @@
 import  "./PokemonDetails.css";
 import usePokemon from "../../hooks/usePokemon";
+import Pokemon from "../Pokemon/Pokemon";
 
 const PokemonDetails = () => {
-    const [pokemonDetails,setPokemonId] = usePokemon();
+    const [pokemonDetails, setPokemonId,pokemonListState] = usePokemon();
 
     return(
-                <div className="pokemon-details">
-                    <div className="pokemon-image">
-                        <img src={pokemonDetails.image} alt={ pokemonDetails.name} />
-                    </div>
-                    <div className="pokemon-info">
+            <>
+            <div className="pokemon-details">
+                <div className="pokemon-image">
+                    <img src={pokemonDetails.image} alt={pokemonDetails.name} />
+                </div>
+                <div className="pokemon-info">
                     <div className="pre-next">
 
-                        <button onClick={()=>
-                            setPokemonId( id => Number(id) -1)
+                        <button onClick={() =>
+                            setPokemonId(id => Number(id) - 1)
                         } >Previous</button>
 
-                        <h2><p className="id">{pokemonDetails.id} </p> { pokemonDetails.name}</h2>
+                        <h2><p className="id">{pokemonDetails.id} </p> {pokemonDetails.name}</h2>
 
-                        <button onClick={()=>
-                            setPokemonId( id => Number(id) +1)
+                        <button onClick={() =>
+                            setPokemonId(id => Number(id) + 1)
                         } >Next</button>
 
                     </div>
@@ -48,9 +50,25 @@ const PokemonDetails = () => {
                         <dt>Hp:</dt>
                         <dd>{pokemonDetails.hp}</dd>
                     </dl>
-                    
-                    </div>
+
                 </div>
+            </div>
+            <div className="similar-pokemon">
+            <h2>Similar Pokemon</h2>
+            <div className="pokemon-list-wrapper">
+                {pokemonListState.pokemonList.map((pokemon) => (
+                    <Pokemon
+                        name={pokemon.name}
+                        url={pokemon.image}
+                        id={pokemon.id}
+                        key={pokemon.id}
+                        onClick= {()=>setPokemonId(pokemon.id)} // Remove arrow function
+                    />
+                ))}
+            </div>
+            </div>
+            </>
+                
     )
 };
 

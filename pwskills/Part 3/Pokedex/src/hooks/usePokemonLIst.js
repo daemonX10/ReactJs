@@ -14,11 +14,12 @@ const usePokemonList = () =>{
         nextUrl: '',
         prevUrl: ''
     });
+    console.log({...pokemonListState});
 
 
     useEffect(() => {
         downloadPokemon(pokemonListState, setPokemonListState, Default_URL);
-    }, [Default_URL, pokemonListState]);
+    }, [pokemonListState.POKEDEX_URL]);
 
   return [pokemonListState,setPokemonListState];
 }
