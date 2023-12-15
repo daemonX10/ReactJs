@@ -44,7 +44,7 @@ const usePokemon = () => {
     const downLoadRelatedPokemon = useCallback(async (pokemonId) => {
         const type = await downloadGivenPokemon(pokemonId);
         await downloadPokemon(pokemonListState, setPokemonListState, `https://pokeapi.co/api/v2/type/${type}`);
-    }, [downloadGivenPokemon])
+    }, [])
 
     useEffect(() => {
         downLoadRelatedPokemon(pokemonId);
