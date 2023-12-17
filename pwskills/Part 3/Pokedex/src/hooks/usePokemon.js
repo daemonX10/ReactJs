@@ -2,14 +2,17 @@ import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import downloadPokemon from "../utils/downloadPokemon";
+import PropTypes from 'prop-types';
 
-const usePokemon = () => {
+const usePokemon = (pokemonName) => {
     const { id } = useParams();
     const [pokemonDetails, setPokemonDetails] = useState([]);
     const [pokemonId, setPokemonId] = useState(id);
+    console.log(pokemonName)
 
     const downloadGivenPokemon = useCallback(async (pokemonId) => {
-        const POKEMON_DETAILS_URL = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`;
+        const POKEMON_DETAILS_URL = `https://pokeapi.co/api/v2/pokemon/${pokemonName ? pokemonName : pokemonId}`;
+        console.log(POKEMON_DETAILS_URL)
         const response = await axios.get(POKEMON_DETAILS_URL);
         const pokemon = response.data;
 
@@ -56,5 +59,11 @@ const usePokemon = () => {
 
     return [pokemonDetails, setPokemonId, pokemonListState];
 }
+
+usePokemon.propTypes = {
+    pokemonName: PropTypes.string
+}
+
+
 
 export default usePokemon;

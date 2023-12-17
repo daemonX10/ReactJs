@@ -2,8 +2,8 @@ import  "./PokemonDetails.css";
 import usePokemon from "../../hooks/usePokemon";
 import Pokemon from "../Pokemon/Pokemon";
 
-const PokemonDetails = () => {
-    const [pokemonDetails, setPokemonId,pokemonListState] = usePokemon();
+const PokemonDetails = ({pokemonName}) => {
+    const [pokemonDetails, setPokemonId,pokemonListState] = usePokemon(pokemonName);
 
     return(
             <>
