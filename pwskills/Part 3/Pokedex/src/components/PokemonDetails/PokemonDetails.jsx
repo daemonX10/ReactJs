@@ -2,14 +2,14 @@ import  "./PokemonDetails.css";
 import usePokemon from "../../hooks/usePokemon";
 import Pokemon from "../Pokemon/Pokemon";
 
-const PokemonDetails = ({pokemonName}) => {
+const PokemonDetails = (pokemonName) => {
     const [pokemonDetails, setPokemonId,pokemonListState] = usePokemon(pokemonName);
 
     return(
             <>
             <div className="pokemon-details">
                 <div className="pokemon-image">
-                    <img src={pokemonDetails.image} alt={pokemonDetails.name} />
+                    <img src={(pokemonDetails.image) ? pokemonDetails.image :'https://demofree.sirv.com/nope-not-here.jpg'} alt={pokemonDetails.name} />
                 </div>
                 <div className="pokemon-info">
                     <div className="pre-next">

@@ -12,7 +12,7 @@ const Pokedex = () => {
     <div className='pokedex-wrapper'>
     <h1>Pokedex</h1>
     <Search updateSearchTerm={setSearchTerm} />
-    {searchTerm ? <PokemonDetails pokemonName={`${searchTerm}`} /> 
+    {searchTerm ? <PokemonDetails pokemonName={searchTerm} /> 
                   : <PokemonList />}
     </div>
   )
