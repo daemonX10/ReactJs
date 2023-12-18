@@ -5,41 +5,47 @@ import downloadPokemon from "../utils/downloadPokemon";
 import PropTypes from 'prop-types';
 
 const usePokemon = ({pokemonName}) => {
-    const { id } = useParams();
+    let { id } = useParams(); // useParams() is used to get the id from the URL
+    console.log(` id from params: ${id}`)
+
+
     const [pokemonDetails, setPokemonDetails] = useState([]);
     const [pokemonId, setPokemonId] = useState(id);
-    console.log(pokemonName)
 
     const downloadGivenPokemon = useCallback(async (pokemonId) => {
-        try{
-        const POKEMON_DETAILS_URL = `https://pokeapi.co/api/v2/pokemon/${pokemonName ? pokemonName : pokemonId}`;
-        console.log(POKEMON_DETAILS_URL)
-        const response = await axios.get(POKEMON_DETAILS_URL);
-        const pokemon = response.data;
+        try {
+            console.log(`pokemonId in download given pokemon: ${pokemonId}`)
+            const POKEMON_DETAILS_URL = `https://pokeapi.co/api/v2/pokemon/${pokemonName ? pokemonName : pokemonId}`;
+            const response = await axios.get(POKEMON_DETAILS_URL);
+            const pokemon = response.data;
 
-        const defaultImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
+            const defaultImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
 
-        const newPokemonDetails = {
-            name: pokemon.name,
-            id: pokemon.id,
-            height: pokemon.height,
-            weight: pokemon.weight,
-            image: pokemon.sprites.other.dream_world.front_default ? pokemon.sprites.other.dream_world.front_default : defaultImage ? pokemon.sprites.other.dream_world.front_default : '',
-            types: pokemon.types.map((type) => type.type.name).join([',']),
-            abilities: pokemon.abilities.map((ability) => ability.ability.name).join(" , "),
-            attack: pokemon.stats[1].base_stat,
-            defense: pokemon.stats[2].base_stat,
-            speed: pokemon.stats[5].base_stat,
-            hp: pokemon.stats[0].base_stat
-        };
-        const type = Array(newPokemonDetails.types.split(","))[0];
-        setPokemonDetails(newPokemonDetails);
-        return type[0];
-    } catch (error) {
-        console.log(error.message)
-    }
+            const newPokemonDetails = {
+                name: pokemon.name,
+                id: pokemon.id,
+                height: pokemon.height,
+                weight: pokemon.weight,
+                image: pokemon.sprites.other.dream_world.front_default || defaultImage,
+                types: pokemon.types.map((type) => type.type.name).join(','),
+                abilities: pokemon.abilities.map((ability) => ability.ability.name).join(", "),
+                attack: pokemon.stats[1].base_stat,
+                defense: pokemon.stats[2].base_stat,
+                speed: pokemon.stats[5].base_stat,
+                hp: pokemon.stats[0].base_stat
+            };
 
-    }, [pokemonName,pokemonId]);
+            const type = newPokemonDetails.types.split(",")[0];
+
+            setPokemonDetails(newPokemonDetails);
+            setPokemonId(pokemon.id);
+            console.log(`pokemonId upadating in download given pokemon: ${pokemon.id}`)
+
+            return {type, id: pokemon.id};
+        } catch (error) {
+            console.log(error.message)
+        }
+    }, [pokemonName]);
 
     const [pokemonListState, setPokemonListState] = useState({
         POKEDEX_URL: '',
@@ -49,25 +55,22 @@ const usePokemon = ({pokemonName}) => {
     });
 
     const downLoadRelatedPokemon = useCallback(async (pokemonId) => {
-        try{
-        const type = await downloadGivenPokemon(pokemonId);
-        await downloadPokemon(pokemonListState, setPokemonListState, `https://pokeapi.co/api/v2/type/${type}`);
+        try {
+            const { type } = await downloadGivenPokemon(pokemonId);
+            await downloadPokemon(pokemonListState, setPokemonListState, `https://pokeapi.co/api/v2/type/${type}`);
         } catch (error) {
             console.log(error.message)
         }
-    }, [downloadGivenPokemon])
+    }, [downloadGivenPokemon]);
 
     useEffect(() => {
         downLoadRelatedPokemon(pokemonId);
-        // add window.scrollTo(0, 0); to scroll to top of page
         window.scrollTo({top:0,behavior:'smooth'});
-
-
     }, [pokemonId, pokemonName]);
 
-    useEffect(() => {
-        setPokemonId(id);
-    }, [id]);
+    // useEffect(() => {
+    //     setPokemonId(id);
+    // }, [id, pokemonName]);
 
     return [pokemonDetails, setPokemonId, pokemonListState];
 }
@@ -75,7 +78,5 @@ const usePokemon = ({pokemonName}) => {
 usePokemon.propTypes = {
     pokemonName: PropTypes.string
 }
-
-
 
 export default usePokemon;
