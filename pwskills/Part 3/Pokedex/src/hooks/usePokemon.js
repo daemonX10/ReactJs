@@ -39,7 +39,7 @@ const usePokemon = ({pokemonName}) => {
         console.log(error.message)
     }
 
-    }, [pokemonName]);
+    }, [pokemonName,pokemonId]);
 
     const [pokemonListState, setPokemonListState] = useState({
         POKEDEX_URL: '',
@@ -55,7 +55,7 @@ const usePokemon = ({pokemonName}) => {
         } catch (error) {
             console.log(error.message)
         }
-    }, [])
+    }, [downloadGivenPokemon])
 
     useEffect(() => {
         downLoadRelatedPokemon(pokemonId);
@@ -63,7 +63,7 @@ const usePokemon = ({pokemonName}) => {
         window.scrollTo({top:0,behavior:'smooth'});
 
 
-    }, [pokemonId]);
+    }, [pokemonId, pokemonName]);
 
     useEffect(() => {
         setPokemonId(id);
