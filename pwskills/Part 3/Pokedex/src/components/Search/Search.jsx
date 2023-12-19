@@ -3,7 +3,7 @@ import './Search.css'
 import  PropTypes from 'prop-types'
 
 const Search = ( {updateSearchTerm} ) => {
-  const debounceUpdateSearch = useDebounce((e) => updateSearchTerm(e.target.value), 5000);
+  const debounceUpdateSearch = useDebounce((e) => updateSearchTerm(e.target.value), 2000);
   return (
     <>
     <input 
