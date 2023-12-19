@@ -5,7 +5,9 @@ import downloadPokemon from "../utils/downloadPokemon";
 import PropTypes from 'prop-types';
 
 const usePokemon = ({pokemonName}) => {
-    let { id } = useParams(); // useParams() is used to get the id from the URL
+    const { id } = useParams();
+     // useParams() is used to get the id from the URL
+
     console.log(` id from params: ${id}`)
 
 
@@ -15,7 +17,7 @@ const usePokemon = ({pokemonName}) => {
     const downloadGivenPokemon = useCallback(async (pokemonId) => {
         try {
             console.log(`pokemonId in download given pokemon: ${pokemonId}`)
-            const POKEMON_DETAILS_URL = `https://pokeapi.co/api/v2/pokemon/${pokemonName ? pokemonName : pokemonId}`;
+            const POKEMON_DETAILS_URL = `https://pokeapi.co/api/v2/pokemon/${pokemonId? pokemonId : pokemonName}`;
             const response = await axios.get(POKEMON_DETAILS_URL);
             const pokemon = response.data;
 
@@ -68,15 +70,15 @@ const usePokemon = ({pokemonName}) => {
         window.scrollTo({top:0,behavior:'smooth'});
     }, [pokemonId, pokemonName]);
 
-    // useEffect(() => {
-    //     setPokemonId(id);
-    // }, [id, pokemonName]);
+    useEffect(() => {
+        setPokemonId(id);
+    }, [id, pokemonName]);
 
     return [pokemonDetails, setPokemonId, pokemonListState];
 }
 
 usePokemon.propTypes = {
-    pokemonName: PropTypes.string
+    pokemonName: PropTypes.string || PropTypes.number
 }
 
 export default usePokemon;

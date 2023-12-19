@@ -9,7 +9,7 @@ const Search = ( {updateSearchTerm} ) => {
     <input 
     id='search-pokemon'
     type="text" 
-    placeholder='Pokemon Name '
+    placeholder='Pokemon Name or ID '
     onChange={debounceUpdateSearch} /> 
     </>
   )

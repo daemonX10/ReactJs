@@ -7,6 +7,9 @@ const PokemonDetails = (pokemonName) => {
 
     return(
             <>
+            <div className="return">
+            <h1>POKEDEX</h1>
+            </div>
             <div className="pokemon-details">
                 <div className="pokemon-image">
                     <img src={(pokemonDetails.image) ? pokemonDetails.image :'https://demofree.sirv.com/nope-not-here.jpg'} alt={pokemonDetails.name} />
