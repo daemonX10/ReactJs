@@ -3,3 +3,12 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.title{
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    color: #FDFDFD;
+    margin: 1rem;
+    border-radius: 10px;
+}
