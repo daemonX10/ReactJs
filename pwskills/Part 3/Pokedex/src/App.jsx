@@ -8,15 +8,13 @@ function App() {
   return (
     <>
       <h1><Link to='/' className='title'>POKEDEX</Link></h1>
-    <Routes>
 
+    <Routes>
       <Route path='/' element={<Pokedex />} />  
       <Route path='/pokemon/:id' element={<PokemonDetails />} />
-
-
       <Route path='*' element={<h1>Not Found</h1>} />
-
     </Routes>
+    
     </>
   )
 }

@@ -8,15 +8,12 @@ const usePokemon = ({pokemonName}) => {
     const { id } = useParams();
      // useParams() is used to get the id from the URL
 
-    console.log(` id from params: ${id}`)
-
 
     const [pokemonDetails, setPokemonDetails] = useState([]);
     const [pokemonId, setPokemonId] = useState(id);
 
     const downloadGivenPokemon = useCallback(async (pokemonId) => {
         try {
-            console.log(`pokemonId in download given pokemon: ${pokemonId}`)
             const POKEMON_DETAILS_URL = `https://pokeapi.co/api/v2/pokemon/${pokemonId? pokemonId : pokemonName}`;
             const response = await axios.get(POKEMON_DETAILS_URL);
             const pokemon = response.data;
@@ -41,11 +38,10 @@ const usePokemon = ({pokemonName}) => {
 
             setPokemonDetails(newPokemonDetails);
             setPokemonId(pokemon.id);
-            console.log(`pokemonId upadating in download given pokemon: ${pokemon.id}`)
 
             return {type, id: pokemon.id};
         } catch (error) {
-            console.log(error.message,'IGNORE THIS ERROR')
+            (error.message,'IGNORE THIS ERROR')
         }
     }, [pokemonName]);
 
@@ -61,7 +57,7 @@ const usePokemon = ({pokemonName}) => {
             const { type } = await downloadGivenPokemon(pokemonId);
             await downloadPokemon(pokemonListState, setPokemonListState, `https://pokeapi.co/api/v2/type/${type}`);
         } catch (error) {
-            console.log(error.message)
+            (error.message)
         }
     }, [downloadGivenPokemon]);
 

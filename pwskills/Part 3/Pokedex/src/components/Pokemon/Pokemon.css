@@ -13,7 +13,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background:linear-gradient(0deg, rgb(94, 196, 140) 0%, #e1ecfa 100%);
+    background:linear-gradient(0deg, rgb(166, 237, 247) 0%, #e1ecfa 100%);
     border-radius: 1rem;
     margin: 1rem;
     text-decoration: none;
@@ -24,7 +24,8 @@
     transition: transform 0.3s ease-in;
     cursor: pointer;
     box-shadow : 0px 0px 10px 0px rgba(0,0,0,0.75);
-    background: linear-gradient(0deg, rgb(119, 255, 180) 0%, #dbebff 100%);
+    background: linear-gradient(0deg,#7eedfc 10%, #dbebff 100%);
+    border: 2px solid rgb(255, 255, 255);
 }
 
 .pokemon-frame h3{
@@ -33,7 +34,7 @@
     font-weight: 800;
     margin: 1rem;
     text-transform: capitalize;
-    color: blanchedalmond;
+    color: rgb(15, 199, 255);
     padding: 0.5rem 1rem;
     background-color: #CDDDE8;
     border-radius: 1rem;
@@ -58,7 +59,7 @@
     bottom: -25px;
     font-size: 2vw;
     font-weight: 800;
-    color: #CDDDE8;
+    color: #74c5c1;
     background-color: #ffffff;
     border-radius: 30%;
     padding: 0.5vw 2vw;
