@@ -45,7 +45,7 @@ const usePokemon = ({pokemonName}) => {
 
             return {type, id: pokemon.id};
         } catch (error) {
-            console.log(error.message)
+            console.log(error.message,'IGNORE THIS ERROR')
         }
     }, [pokemonName]);
 
