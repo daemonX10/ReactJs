@@ -1,10 +1,11 @@
+import { useState } from 'react'
 import './App.css'
 import AddTodo from './components/AddTodo/AddTodo'
 import TodoList from './components/TodoList/TodoList'
 
 function App() {
 
-  const todos = [
+  const [todos , setTodos] = useState([
     {
       id: 1,
       text: 'Learn React',
@@ -25,12 +26,15 @@ function App() {
       text: 'Learn React Native',
       isFinished: false
     }
-  ]
-
+  ]);
+  
+  const addtoList = (todoText) => {
+    setTodos([...todos, { id: todos.length + 1, text: todoText, isFinished: false }]);
+  }
   return(
     <>
-    <AddTodo />
-    <TodoList todos={todos} />
+    <AddTodo addtoList={addtoList}/>
+    <TodoList todos={todos}  />
     </>
   )
 }
