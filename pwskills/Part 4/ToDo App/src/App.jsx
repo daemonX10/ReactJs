@@ -31,6 +31,8 @@ function App() {
   const addtoList = (todoText) => {
     setTodos([...todos, { id: todos.length + 1, text: todoText, isFinished: false }]);
   }
+
+
   return(
     <>
     <AddTodo addtoList={addtoList}/>
