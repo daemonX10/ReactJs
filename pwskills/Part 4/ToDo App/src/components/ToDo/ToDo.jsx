@@ -1,12 +1,35 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
-const ToDo = ({text,isFinished}) => {
+const ToDo = ({text,isFinished,deleteTodo,editTodo}) => {
+
+  const buttonCss = "px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 m-2";
+  
+  const inputButtonCss = 'm-2 px-3 py-2 bg-white border-2 shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:blue-red-200 focus:ring-1 rounded-md sm:text-sm capitalize';
+
+  const [isEditing,setIsEditing] = useState(false);
+  const [editableText,setEditableText] = useState(text);
+  console.log(editableText);
+
+
+
   return (
     <div className='m-2'>
-        <input type="checkbox" checked={isFinished} />
-        <span>{text}</span>
-        <button type="button" className="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 m-2" >Edit</button>
-        <button type="button" className="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 m-2" >Delete</button>
+
+      <input type="checkbox" 
+      checked={isFinished} />
+      <span>{isEditing?<input value={editableText} onChange={(e)=>setEditableText(e.target.value)} className={inputButtonCss} /> :editableText }</span>
+
+
+      <button type="button" 
+      className={buttonCss} 
+      onClick={()=>{ editTodo(editableText), setIsEditing(!isEditing) }}>{isEditing? 'Save':'Edit'}
+      </button>
+
+      <button type="button" 
+      className={buttonCss} 
+      onClick={deleteTodo}>Delete
+      </button>
         
     </div>
   )
@@ -14,7 +37,9 @@ const ToDo = ({text,isFinished}) => {
 
 ToDo.propTypes = {
   text: PropTypes.string,
-  isFinished: PropTypes.bool
+  isFinished: PropTypes.bool,
+  deleteTodo: PropTypes.func,
+  editTodo:PropTypes.func
 };
 
 export default ToDo
