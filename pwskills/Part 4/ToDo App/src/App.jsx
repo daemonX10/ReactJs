@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import AddTodo from './components/AddTodo/AddTodo'
 import TodoList from './components/TodoList/TodoList'
+
+import TodoContext from './context/TodoContext'
 
 function App() {
 
@@ -28,15 +30,17 @@ function App() {
     }
   ]);
   
-  const addtoList = (todoText) => {
-    setTodos([...todos, { id: todos.length + 1, text: todoText, isFinished: false }]);
-  }
+  useEffect(()=>{
+    console.log(todos)
+  },[todos])
 
 
   return(
     <>
-    <AddTodo addtoList={addtoList}/>
-    <TodoList todos={todos} setTodos={setTodos} />
+    <TodoContext.Provider value={{todos,setTodos}}>
+      <AddTodo />
+      <TodoList setTodos={setTodos} todos={todos}/>
+    </TodoContext.Provider>
     </>
   )
 }

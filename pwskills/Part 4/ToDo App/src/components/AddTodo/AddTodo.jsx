@@ -1,16 +1,18 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 
+import TodoContext from "../../context/TodoContext";
 
-import PropTypes from 'prop-types';
-
-const AddTodo = ({ addtoList }) => {
+const AddTodo = () => {
   
   const [todoText, setTodoText] = useState('');
   
+  const { todos, setTodos} = useContext(TodoContext)
+
   const addText = () => {
     const task = todoText.trim();
     if (task) {
-      addtoList(task);
+      let nextId = todos.length +1;
+      setTodos([...todos,{id:nextId,text:todoText,isFinished:false}])
       setTodoText('');
     }else{
       setTodoText('');
@@ -37,8 +39,6 @@ const AddTodo = ({ addtoList }) => {
   )
 }
 
-AddTodo.propTypes = {
-  addtoList: PropTypes.func.isRequired
-};
+
 
 export default AddTodo

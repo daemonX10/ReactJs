@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-const ToDo = ({text,isFinished,deleteTodo,editTodo}) => {
+const ToDo = ({text,isFinished,deleteTodo,editTodo,finishTodo}) => {
 
   const buttonCss = "px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 m-2";
   
@@ -9,7 +9,7 @@ const ToDo = ({text,isFinished,deleteTodo,editTodo}) => {
 
   const [isEditing,setIsEditing] = useState(false);
   const [editableText,setEditableText] = useState(text);
-  console.log(editableText);
+
 
 
 
@@ -17,13 +17,13 @@ const ToDo = ({text,isFinished,deleteTodo,editTodo}) => {
     <div className='m-2'>
 
       <input type="checkbox" 
-      checked={isFinished} />
+      checked={isFinished} onChange={()=>finishTodo(!isFinished)} />
       <span>{isEditing?<input value={editableText} onChange={(e)=>setEditableText(e.target.value)} className={inputButtonCss} /> :editableText }</span>
 
 
       <button type="button" 
       className={buttonCss} 
-      onClick={()=>{ editTodo(editableText), setIsEditing(!isEditing) }}>{isEditing? 'Save':'Edit'}
+      onClick={()=>{editTodo(editableText), setIsEditing(!isEditing) }}>{isEditing? 'Save':'Edit'}
       </button>
 
       <button type="button" 
