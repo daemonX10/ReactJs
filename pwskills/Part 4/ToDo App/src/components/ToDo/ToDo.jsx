@@ -7,6 +7,9 @@ const ToDo = ({text,isFinished,deleteTodo,editTodo,finishTodo}) => {
   
   const inputButtonCss = 'm-2 px-3 py-2 bg-white border-2 shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:blue-red-200 focus:ring-1 rounded-md sm:text-sm capitalize';
 
+
+  const checkboxCss = "w-4 h-4 m-3 text-blue-600 bg-gray-100 border-gray-300 rounded-full dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 dark:focus:rounded-full" 
+
   const [isEditing,setIsEditing] = useState(false);
   const [editableText,setEditableText] = useState(text);
 
@@ -15,9 +18,8 @@ const ToDo = ({text,isFinished,deleteTodo,editTodo,finishTodo}) => {
 
   return (
     <div className='m-2'>
-
-      <input type="checkbox" 
-      checked={isFinished} onChange={()=>finishTodo(!isFinished)} />
+      <input type="checkbox" className={checkboxCss}
+      checked={isFinished} onChange={finishTodo} />
       <span>{isEditing?<input value={editableText} onChange={(e)=>setEditableText(e.target.value)} className={inputButtonCss} /> :editableText }</span>
 
 

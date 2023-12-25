@@ -6,32 +6,19 @@ import { useContext } from 'react';
 import TodoContext from '../../context/TodoContext';
 
 const TodoList = () => {
-  const { todos, setTodos} = useContext(TodoContext)
+  const { todos, dispatch} = useContext(TodoContext)
 
   const onDeleteTodo= (id)=>{
-    const  newTodo = todos.filter((todo)=>todo.id!=id);
-    setTodos(newTodo);
-  }
-//TODO: ON EDITING EVERY TIME EDITABLE TEXT RENDER SO I HAVE TO CHANGE IT ON SAVE BUTTON
-  const onEditTodo = (id,editableText) =>{
-    console.log(editableText?'true':'false')
-    const newTodoList=todos.map((todo)=>{
-      if(todo.id==id){
-        todo.text=editableText;
-      }
-      return todo
-    });
-    setTodos(newTodoList);
+    dispatch({type:'DELETE_TODO',payload:{id}})
   }
 
-  const onFinishTodo=(id,state)=>{
-    const newTodoList = todos.map((todo)=>{
-      if(todo.id===id){
-        todo.isFinished=state
-      }
-      return todo;
-    });
-    setTodos(newTodoList)
+
+  const onEditTodo = (id,editableText) =>{
+    dispatch({type:'EDIT_TODO',payload:{id:id,text:editableText}})
+  }
+
+  const onFinishTodo=(id)=>{
+    dispatch({type:'FINISH_TODO',payload:{id,}})
   }
 
   return (
@@ -42,7 +29,7 @@ const TodoList = () => {
       isFinished={todo.isFinished}
       deleteTodo={()=>{ onDeleteTodo(todo.id)}}
       editTodo = {(editableText)=>{ onEditTodo(todo.id,editableText)}}
-      finishTodo={(state)=>{onFinishTodo(todo.id,state)}}
+      finishTodo={()=>{onFinishTodo(todo.id)}}
       /> )}
     </div>
   )

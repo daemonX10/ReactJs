@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useReducer} from 'react'
 import './App.css'
 import AddTodo from './components/AddTodo/AddTodo'
 import TodoList from './components/TodoList/TodoList'
 
 import TodoContext from './context/TodoContext'
+import TodoReducer from './reducer/TodoReducer'
 
 function App() {
 
-  const [todos , setTodos] = useState([
+ const prev_todos=[
     {
       id: 1,
       text: 'Learn React',
@@ -27,8 +28,10 @@ function App() {
       id: 4,
       text: 'Learn React Native',
       isFinished: false
-    }
-  ]);
+    }];
+ 
+
+  const [todos,dispatch] = useReducer(TodoReducer,prev_todos)
   
   useEffect(()=>{
     console.log(todos)
@@ -37,9 +40,9 @@ function App() {
 
   return(
     <>
-    <TodoContext.Provider value={{todos,setTodos}}>
+    <TodoContext.Provider value={{todos,dispatch}}>
       <AddTodo />
-      <TodoList setTodos={setTodos} todos={todos}/>
+      <TodoList />
     </TodoContext.Provider>
     </>
   )

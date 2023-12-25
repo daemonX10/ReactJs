@@ -6,18 +6,11 @@ const AddTodo = () => {
   
   const [todoText, setTodoText] = useState('');
   
-  const { todos, setTodos} = useContext(TodoContext)
+  const { dispatch} = useContext(TodoContext)
 
   const addText = () => {
-    const task = todoText.trim();
-    if (task) {
-      let nextId = todos.length +1;
-      setTodos([...todos,{id:nextId,text:todoText,isFinished:false}])
-      setTodoText('');
-    }else{
-      setTodoText('');
-      console.log('empty Todo')
-    }
+    dispatch({type:'ADD_TODO',payload:{todoText}});
+    setTodoText('');
   }
 
   const capitalizeFirstLetter = (string)=>{
