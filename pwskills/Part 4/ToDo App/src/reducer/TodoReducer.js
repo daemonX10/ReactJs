@@ -1,5 +1,23 @@
+const initialState = [
+    {
+        id: 1,
+        text: 'Learn React',
+        isFinished: false
+    },
+    {
+        id: 2,
+        text: 'Learn Redux',
+        isFinished: false
+    },
+    {
+        id: 3,
+        text: 'Build a React Redux App',
+        isFinished: false
+    }
 
-const TodoReducer = (state, action) => {
+]
+
+const TodoReducer = (state=initialState, action) => {
     const nextId = state.length + 1;
     if(action.type === 'ADD_TODO') {
         const trimed_todo = action.payload.todoText.trim();
