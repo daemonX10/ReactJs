@@ -1,11 +1,16 @@
 import React from 'react'
+import UserContextProvider from './context/UserContext.jsx';
+import Login from './components/Login';
+import Profile from './components/Profile';
 
 const App = () => {
   return (
     <UserContextProvider>
     <h1>
-      React Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt, autem at? Distinctio itaque fugiat, mollitia expedita rem magnam cupiditate ea eaque possimus enim et totam, facere omnis maiores! Nisi, repellendus!
+      Context API
     </h1>
+    <Login />
+    <Profile/>
     </UserContextProvider>
   )
 }
